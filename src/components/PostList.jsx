@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import PostListFetch from '../actions/PostListFetch'
-import { ROUTE } from '../constants'
 import React from 'react'
+import { Route } from '../constants'
 import _ from 'lodash'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -26,7 +26,7 @@ class PostList extends React.Component {
 				<div className={`text-xs-right`}>
 					<Link
 						className={`btn btn-primary`}
-						to={ROUTE.postNew}
+						to={Route.NEW}
 					>
 						Add a post
 					</Link>
@@ -38,7 +38,9 @@ class PostList extends React.Component {
 							className={`list-group-item`}
 							key={post.id}
 						>
-							{post.title}
+							<Link to={Route.POST.replace(`:id`, post.id)}>
+								{post.title}
+							</Link>
 						</li>
 					)}
 				</ul>

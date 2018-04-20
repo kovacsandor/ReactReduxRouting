@@ -1,15 +1,11 @@
-import { ACTION } from '.'
+import { APIKey, Action, RootURL } from '../constants'
+
 import Axios from 'axios'
 
-const ROOT_URL = `http://reduxblog.herokuapp.com/api`
-const API_KEY = `?key=test1324`
-
-function PostListFetch() {
-	const request = Axios.get(`${ROOT_URL}/posts${API_KEY}`)
+export default function () {
+	const request = Axios.get(`${RootURL}/posts${APIKey}`)
 	return {
 		payload: request,
-		type: ACTION.postListFetch,
+		type: Action.POST_LIST_FETCH,
 	}
 }
-
-export default PostListFetch

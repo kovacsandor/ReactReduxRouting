@@ -1,5 +1,5 @@
-import React from 'react'
 import { InputType } from '../constants'
+import React from 'react'
 
 export default class FormTextInput extends React.Component {
 
@@ -16,17 +16,23 @@ export default class FormTextInput extends React.Component {
     // componentWillUpdate() { }
 
     render() {
-        const { input: { label, value, onChange } } = this.props
+        const { input, label, meta } = this.props
+        const isFaulty = meta.touched && meta.error
         return (
-            <div className={`form-group`}>
+            <div className={`form-group ${isFaulty ? `has-danger` : ``}`}>
                 <label>
-                    {this.props.label}
+                    {label}
                 </label>
                 <input
                     className={`form-control`}
                     type={InputType.TEXT}
-                    {...value}
+                    {...input}
                 />
+                {isFaulty &&
+                    <div className={`text-help`}>
+                        {meta.error}
+                    </div>
+                }
             </div>
         )
     }
